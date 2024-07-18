@@ -65,17 +65,23 @@ class UrTube:
                 search.append(i.title)
         return search
 
-    def watch_video(self, other):
+       def watch_video(self, other):
 
-        for i in self.videos:
-            if other == i.title:
-                user1 = self.current_user1
-                if not user1:
-                    print('Войдите в аккаунт, чтобы смотреть видео')
-                elif i.adult_mode and user1.age < 18:
-                    print('Вам нет 18 лет, пожалуйста покиньте страницу')
-                else:
-                    print(' '.join([str(j) for j in range(i.time_now, i.duration + 1)]), 'Конец видео')
+            for i in self.videos:
+                if other == i.title:
+                    user1 = self.current_user1
+                    if not user1:
+                        print('Войдите в аккаунт, чтобы смотреть видео')
+    
+                    elif i.adult_mode and user1.age < 18:
+                        print('Вам нет 18 лет, пожалуйста покиньте страницу')
+                        time.sleep(1)
+                    else:
+    
+                        for j in range(i.time_now, i.duration + 1):
+                            print(j, end=' ')
+                            time.sleep(1)
+                        print('Конец видео')
 
 
 ur = UrTube()
