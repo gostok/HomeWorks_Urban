@@ -3,7 +3,7 @@
 def add_everything_up(a, b):
     try:
         result = a + b
-    except TypeError as te:
+    except TypeError:
         return str(a) + str(b)
     else:
         return result
