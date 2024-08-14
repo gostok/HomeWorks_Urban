@@ -1,0 +1,18 @@
+ERROR | Неверный тип данных для объекта Runner
+Traceback (most recent call last):
+  File "C:\Urban Un\kurs Python\Module.12\course6\tests_12_4.py", line 23, in test_run
+    run = Runner(12345, 5)
+          ^^^^^^^^^^^^^^^^
+  File "C:\Urban Un\kurs Python\Module.12\course6\rt_with_exceptions.py", line 6, in __init__
+    raise TypeError(f'Имя может быть только числом, передано {type(name).__name__}')
+TypeError: Имя может быть только числом, передано int
+INFO | "test_run_valid" выполнен успешно
+ERROR | Неверная скорость для Runner
+Traceback (most recent call last):
+  File "C:\Urban Un\kurs Python\Module.12\course6\tests_12_4.py", line 13, in test_walk
+    walk = Runner('Test walk', -5)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Urban Un\kurs Python\Module.12\course6\rt_with_exceptions.py", line 11, in __init__
+    raise ValueError(f'Скорость не может быть отрицательной, сейчас {speed}')
+ValueError: Скорость не может быть отрицательной, сейчас -5
+INFO | "test_walk_valid" выполнен успешно
