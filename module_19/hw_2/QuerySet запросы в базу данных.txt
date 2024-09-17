@@ -1,0 +1,38 @@
+(.venv) PS C:\Urban_Un\kurs_Python\Module19\hw\hw_19_django> py manage.py shell
+Python 3.12.4 (tags/v3.12.4:8e8a4ba, Jun  6 2024, 19:30:16) [MSC v.1940 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> Buyer.objects.create(name='Anton', balance=500, age=25)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Buyer' is not defined. Did you mean: 'super'?
+>>> from task1.models import Buyer, Game
+>>> Buyer.objects.create(name='Anton', balance=500, age=25)
+<Buyer: Anton>
+>>> Buyer.objects.create(name='Andrey', balance=200, age=31)
+<Buyer: Andrey>
+>>> Buyer.objects.create(name='Pavel', balance=0, age=17)
+<Buyer: Pavel>
+>>> Game.objects.create
+<bound method QuerySet.create of <django.db.models.manager.Manager object at 0x000001F816653650>>
+>>> Game.objects.create(title='Diablo II', cost=2500, size=56000, description='диаблоид', age_limited=True)
+<Game: Game object (1)>
+>>> Game.objects.create(title='Hollow Knight', cost=800, size=3100, description='метроидвания')                   
+<Game: Game object (2)>
+>>> Game.objects.create(title='Dark Souls Remastered', cost=2999, size=12000, description='soulslike', age_limited=True)
+<Game: Game object (3)>
+>>> Anton = Buyer.objects.get(id=1) 
+>>> Anton
+<Buyer: Anton>
+>>> Andrey = Buyer.objects.get(id=2)
+>>> Pavel = Buyer.objects.get(id=3)
+>>> Game.objects.get(id=1).buyer.set((Anton, Andrey))
+>>> Game.objects.get(id=2).buyer.set((Anton, Pavel))  
+>>> Game.objects.get(id=3).buyer.set((Anton))        
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Urban_Un\kurs_Python\Module19\.venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 1325, in set
+    objs = tuple(objs)
+           ^^^^^^^^^^^
+TypeError: 'Buyer' object is not iterable
+>>> Game.objects.get(id=3).buyer.set((Anton, ))
