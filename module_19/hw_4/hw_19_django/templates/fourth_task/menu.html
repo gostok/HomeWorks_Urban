@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Игровая платформа{% endblock %}</title>
+</head>
+<body>
+    <header>
+        {% block pagename %}
+            <h2>TEXT</h2>
+        {% endblock %}
+    </header>
+    <nav>
+
+
+            {% block menu %}
+
+                <ul>
+                    <li><a href="/platform">Главная</a></li>
+                    <li><a href="/platform/game">Магазин</a></li>
+                    <li><a href="/platform/basket">Корзина</a></li>
+                </ul>
+            {% endblock %}
+
+    </nav>
+
+    <main>
+        {% block content %}
+            <p>Контент</p>
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2024 my site</p>
+    </footer>
+</body>
+</html>

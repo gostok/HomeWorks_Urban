@@ -1,0 +1,30 @@
+>>> from task1.models import Post
+>>> Post.objects.create(title='First', content='This is the content of the First.')
+<Post: First>
+>>> Post.objects.create(title='Second', content='Content for the Second.')         
+<Post: Second>
+>>> Post.objects.create(title='Third', content='Content for the Third.')  
+<Post: Third>
+>>> post = Post.objects.first()
+>>> post.title = 'Update title for First.'
+>>> post.content = 'Update content for the First.'
+>>> post.save()
+>>> post2 = Post.objects.second()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'second'
+>>> post2 = Post.objects.second(id=2)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'second'
+>>> post2 = Post.objects.get(id=2)   
+>>> post2.delete()
+(1, {'task1.Post': 1})
+>>> all_posts = Post.objects.all()
+>>> for post in all_posts:
+... print(post.title, post.content)
+  File "<console>", line 2
+    print(post.title, post.content)
+    ^^^^^
+IndentationError: expected an indented block after 'for' statement on line 1
+>>> exit()
