@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+<body>
+   <h1>Список постов</h1>
+
+   <form method="GET">
+       <label for="items_page">Элементов на странице:</label>
+       <select name="items_page" onchange="this.form.submit()">
+           <option value="3" {% if items_page == "3" %}selected{% endif %}>3</option>
+           <option value="4" {% if items_page == "4" %}selected{% endif %}>4</option>
+           <option value="5" {% if items_page == "5" %}selected{% endif %}>5</option>
+       </select>
+       <input type="hidden" name="page" value="{{ page_obj.number }}">
+   </form>
+
+   <ul>
+       {% for post in page_obj %}
+           <li>
+               <h2>{{ post.title }}</h2>
+               <p>{{ post.content }}</p>
+               <small>Создано: {{ post.created_at }}</small>
+           </li>
+       {% endfor %}
+   </ul>
+
+   <div>
+       <span>Страницы:</span>
+       <span>
+           {% if page_obj.has_previous %}
+               <a href="?page=1&items_page={{ items_page }}">Первая</a>
+               <a href="?page={{ page_obj.previous_page_number }}&items_page={{ items_page }}">Назад</a>
+           {% endif %}
+       </span>
+       <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+       <span>
+           {% if page_obj.has_next %}
+               <a href="?page={{ page_obj.next_page_number }}&items_page={{ items_page }}">Вперёд</a>
+               <a href="?page={{ page_obj.paginator.num_pages }}&items_page={{ items_page }}">Последняя</a>
+           {% endif %}
+       </span>
+   </div>
+</body>
+</html>
