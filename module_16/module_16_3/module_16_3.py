@@ -21,7 +21,7 @@ async def post(username: Annotated[str, Path(min_length =4, max_length =15, desc
 @app.put('/user/{user_id}/{username}/{age}')
 async def put(username: Annotated[str, Path(min_length =4, max_length =15, description='Enter your username', example='Andrey')], 
               age: Annotated[int, Path(ge=1, le=100, description='Enter your age', example='24')],
-              user_id: int=Path(ge=1, le=20, description='Enter user_id', example='2')) -> str:
+              user_id: int=Path(description='Enter user_id', example='2')) -> str:
     users[user_id] = f"Имя: {username}, Возраст: {age}"
     return f"The user {user_id} is updated"
 
